@@ -607,7 +607,6 @@
         <p>&copy; Copyright 2025</p>
       </div>
     </footer>
-    <!-- Модальное окно логина -->
     <div class="modal" id="login-modal">
       <div class="modal__overlay" data-close></div>
       <div class="modal__content">
@@ -623,7 +622,6 @@
         <h2 class="modal__title">Account Log In</h2>
 
         <form id="login-form" novalidate>
-          <!-- Email -->
           <div class="form-group">
             <label for="login-email"
               >Email address <span class="required">*</span></label
@@ -638,7 +636,6 @@
             <span class="error-msg" id="login-email-error"></span>
           </div>
 
-          <!-- Password -->
           <div class="form-group">
             <label for="login-password"
               >Password <span class="required">*</span></label
@@ -651,7 +648,6 @@
                 class="form-control"
                 required
               />
-              <!-- Кнопка-иконка для показа/скрытия пароля -->
               <button
                 type="button"
                 class="toggle-password"
@@ -689,7 +685,6 @@
             <span class="error-msg" id="login-password-error"></span>
           </div>
 
-          <!-- Remember me & Forgot Password -->
           <div class="form-options">
             <label class="checkbox-label">
               <input type="checkbox" name="remember" />
@@ -698,10 +693,8 @@
             <a href="#" class="forgot-link">Forgot Your Password?</a>
           </div>
 
-          <!-- Submit -->
           <button type="submit" class="btn-login">LOG IN</button>
 
-          <!-- Сообщение об успехе/ошибке -->
           <div id="login-status" class="login-status"></div>
         </form>
       </div>

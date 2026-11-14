@@ -833,27 +833,21 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        new Swiper(".travel-swiper", {
+        const swiper = new Swiper(".travel-swiper", {
           slidesPerView: 1,
           spaceBetween: 20,
-
           navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
           },
-
           breakpoints: {
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-            1440: {
-              slidesPerView: 4,
-            },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1440: { slidesPerView: 4 },
           },
         });
+
+        window.travelSwiper = swiper;
       });
     </script>
   </body>
