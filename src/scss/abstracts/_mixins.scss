@@ -1,0 +1,19 @@
+@use "variables" as *;
+
+@mixin bold-weight {
+  font-weight: 700;
+}
+
+@mixin fsz-15 {
+  font-size: 15px;
+}
+
+@mixin regular-text {
+  font-size: 17px;
+  color: $text-dark;
+  line-height: 1.5;
+}
+
+@mixin fsz-19 {
+  font-size: 19px;
+}

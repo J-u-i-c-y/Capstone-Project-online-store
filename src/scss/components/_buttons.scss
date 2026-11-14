@@ -1,0 +1,11 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.btn {
+  @include bold-weight;
+
+  background-color: $primary-color;
+  color: #fff;
+  width: fit-content;
+  padding: 1.2em 1.9em;
+}

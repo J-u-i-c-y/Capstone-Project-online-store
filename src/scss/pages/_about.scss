@@ -1,0 +1,271 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.about {
+  &__hero {
+    position: relative;
+    background-image: url("../../src/assets/images/about-hero.png");
+    background-size: cover;
+    background-position: center;
+    padding: 120px 20px;
+    text-align: center;
+    color: #fff;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgb(0 0 0 / 40%);
+      z-index: 0;
+    }
+  }
+
+  &__container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    @include regular-text;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    & p {
+      color: #e9e9ed;
+    }
+  }
+
+  &-cards {
+    margin: 130px 0;
+  }
+
+  &-cards__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  &-arrivals {
+    margin: 130px 0;
+  }
+
+  &-arrivals__container {
+    display: flex;
+    gap: 38px;
+  }
+
+  &-arrivals__title {
+    font-weight: 900;
+  }
+
+  &-arrivals__content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &-arrivals__image {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &-arrivals__text {
+    @include regular-text;
+  }
+
+  @media (width <= 1023px) {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &-arrivals__container {
+      flex-direction: column;
+    }
+
+    &-cards__container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (width <= 767px) {
+    &-cards__container {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.about-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+
+  &__icon {
+    width: 62px;
+    height: 62px;
+    background-color: $primary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    @include bold-weight;
+
+    color: $text-dark;
+  }
+
+  &__text {
+    @include regular-text;
+
+    line-height: 1.5;
+  }
+}
+
+.team {
+  margin-bottom: 170px;
+
+  &__container {
+    @media (width <= 992px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  &-title {
+    position: relative;
+    font-weight: 900;
+    margin: 0 auto 60px;
+    width: fit-content;
+  }
+
+  &-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $primary-color;
+  }
+
+  &-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+  }
+
+  &-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 27px;
+  }
+
+  &-member__photo {
+    width: 100%;
+  }
+
+  &-member__name {
+    font-size: 22px;
+    color: #000;
+    text-align: center;
+  }
+
+  @media (width <= 767px) {
+    &-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.cta {
+  &__wrapper {
+    background-image: url("../../src/assets/images/discount.png");
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 407px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgb(0 0 0 / 40%);
+      z-index: -1;
+    }
+  }
+
+  &-discount__percent {
+    font-size: 223px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: -20px;
+    margin-top: -50px;
+  }
+
+  &-discount__text {
+    font-size: 20px;
+    color: #fff;
+  }
+
+  &__title {
+    color: #fff;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 406px;
+  }
+
+  &__text {
+    @include regular-text;
+
+    color: #fff;
+  }
+
+  @media (width <= 1023px) {
+    &__wrapper {
+      height: auto;
+      flex-direction: column;
+      padding: 30px 20px;
+      text-align: center;
+      justify-content: flex-end;
+    }
+
+    &-discount__percent {
+      font-size: 150px;
+      margin: 0;
+    }
+
+    &__content {
+      align-items: center;
+    }
+  }
+
+  @media (width <= 767px) {
+    &-discount__percent {
+      font-size: 90px;
+    }
+
+    &__content {
+      gap: 15px;
+    }
+  }
+}

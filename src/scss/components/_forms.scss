@@ -1,0 +1,132 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.contact {
+  &__hero {
+    position: relative;
+    background-image: url("../../src/assets/images/contact-hero.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 120px 20px;
+    text-align: center;
+    color: #fff;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgb(0 0 0 / 40%);
+      z-index: 0;
+    }
+  }
+}
+
+.contacts {
+  &__title {
+    font-size: 25px;
+    margin-bottom: 34px;
+  }
+
+  &__subtitle {
+    @include regular-text;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  &__image {
+    height: 100%;
+    background-image: url("../../src/assets/images/feedback.jpg");
+    background-size: cover;
+  }
+}
+
+.form {
+  &__group {
+    margin-bottom: 25px;
+  }
+
+  &__label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 16px;
+
+    .form__required {
+      color: $primary-color;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid $primary-color;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition:
+      border-color 0.3s,
+      box-shadow 0.3s;
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
+
+    &_error {
+      border-color: $error-color;
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  &__error {
+    position: absolute;
+    display: block;
+    color: $error-color;
+    font-size: 12px;
+    margin-top: 5px;
+    min-height: 14px;
+  }
+
+  &__status {
+    display: inline;
+    margin-top: 20px;
+    font-weight: 600;
+
+    &_success {
+      color: #2ecc71;
+    }
+
+    &_error {
+      color: $error-color;
+    }
+  }
+}
+
+.btn {
+  &_primary {
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+@media (width <= 768px) {
+  .contacts__container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}

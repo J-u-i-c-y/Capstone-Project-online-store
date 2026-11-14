@@ -1,0 +1,124 @@
+.header {
+  background-color: #fff;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.header__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+  position: relative;
+}
+.header__socials {
+  display: flex;
+  gap: 15px;
+  flex: 1;
+}
+.header__social-link {
+  color: #000;
+  transition: color 0.3s;
+}
+.header__social-link svg {
+  width: 18px;
+  height: 18px;
+}
+.header__social-link:hover {
+  color: #b92770;
+}
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.header__logo-icon {
+  width: 28px;
+  height: 28px;
+}
+.header__logo-text {
+  color: #b92770;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.header__actions {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  justify-content: flex-end;
+}
+.header__action-link {
+  color: #000;
+  transition: color 0.3s;
+}
+.header__action-link svg {
+  width: 24px;
+  height: 24px;
+}
+.header__action-link:hover {
+  color: #b92770;
+}
+.header__nav {
+  border-top: 1px solid #e5e5e5;
+  padding: 15px 0;
+}
+.header__menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.header__link {
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.header__link:hover, .header__link_active {
+  color: #b92770;
+}
+.header__item-dropdown svg {
+  margin-top: 2px;
+}
+
+@media (width <= 767px) {
+  .header__top {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 0;
+  }
+  .header__logo {
+    position: static;
+    transform: none;
+    order: -1;
+    width: 100%;
+    justify-content: center;
+  }
+  .header__socials, .header__actions {
+    flex: none;
+  }
+  .header__menu {
+    gap: 15px;
+  }
+}
+
+/*# sourceMappingURL=header.css.map */

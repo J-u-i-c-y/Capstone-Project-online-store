@@ -1,0 +1,89 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.products {
+  margin: 120px 0;
+
+  &__title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-weight: 900;
+  }
+
+  &__subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 50px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 38px;
+
+    @media (width <= 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (width <= 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.product-card {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #eaeaea;
+    margin-bottom: 20px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: $primary-color;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 10px;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #000;
+    line-height: 1.4;
+    max-width: 200px;
+  }
+
+  &__price {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #504e4a;
+  }
+
+  &__btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
