@@ -92,12 +92,12 @@ function setupQuantitySelector() {
     if (!minusBtn || !plusBtn || !input)
         return;
     minusBtn.addEventListener("click", () => {
-        let val = parseInt(input.value);
+        const val = parseInt(input.value);
         if (val > 1)
             input.value = (val - 1).toString();
     });
     plusBtn.addEventListener("click", () => {
-        let val = parseInt(input.value);
+        const val = parseInt(input.value);
         input.value = (val + 1).toString();
     });
 }

@@ -132,7 +132,7 @@
       <div class="product-details">
         <div class="product-gallery">
           <div class="product-gallery__main">
-            <img id="main-image" src="" alt="Product Image" />
+            <img id="main-image" src="" alt="Product" />
           </div>
           <div class="product-gallery__thumbnails">
             <img src="../assets/images/card-1.png" alt="Thumb 1" />
@@ -170,19 +170,19 @@
 
           <div class="product-options">
             <div class="option-group">
-              <label>Size</label>
+              <label for="product-size">Size</label>
               <select id="product-size">
                 <option>Choose option</option>
               </select>
             </div>
             <div class="option-group">
-              <label>Color</label>
+              <label for="product-color">Color</label>
               <select id="product-color">
                 <option>Choose option</option>
               </select>
             </div>
             <div class="option-group">
-              <label>Category</label>
+              <label for="product-category">Category</label>
               <select id="product-category">
                 <option>Choose option</option>
               </select>
@@ -289,8 +289,8 @@
                 </p>
 
                 <form id="review-form" novalidate>
-                  <div class="form-group">
-                    <label>RATE PRODUCT <span class="required">*</span></label>
+                  <fieldset class="form-group">
+                    <legend>RATE PRODUCT <span class="required">*</span></label>
                     <div class="star-rating">
                       <input
                         type="radio"
@@ -324,7 +324,7 @@
                         value="1"
                       /><label for="star1">★</label>
                     </div>
-                  </div>
+                  </fieldset>
 
                   <div class="form-group">
                     <textarea

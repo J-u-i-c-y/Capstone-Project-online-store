@@ -209,18 +209,18 @@ function initCustomDropdowns(): void {
     optionsList.forEach((option) => {
       option.addEventListener("click", (e) => {
         const target = e.target as HTMLElement;
-        const text = target.textContent || "Choose option";
+        const text = target.textContent ?? "Choose option";
 
         if (trigger) trigger.textContent = text;
 
         if (filterType === "sort") {
-          const sortValue = target.getAttribute("data-sort") || "default";
+          const sortValue = target.getAttribute("data-sort") ?? "default";
           activeFilters.sortBy = sortValue;
           applyFiltersAndRender();
           return;
         }
 
-        const value = target.getAttribute("data-value") || "";
+        const value = target.getAttribute("data-value") ?? "";
         if (filterType === "color") activeFilters.color = value;
         if (filterType === "size") activeFilters.size = value;
         if (filterType === "category") activeFilters.category = value;

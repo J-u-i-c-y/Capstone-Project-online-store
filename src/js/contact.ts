@@ -35,10 +35,11 @@ if (form && statusDiv) {
     return true;
   };
 
-  const inputs = Array.from(form.querySelectorAll(".form__input")) as (
-    | HTMLInputElement
-    | HTMLTextAreaElement
-  )[];
+  const inputs = Array.from(
+    form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+      ".form__input",
+    ),
+  );
 
   inputs.forEach((input) => {
     input.addEventListener("input", () => validateField(input));

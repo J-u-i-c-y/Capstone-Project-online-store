@@ -1,9 +1,9 @@
 import { updateHeaderCartCount } from "./cart.js";
 
 const modal = document.getElementById("login-modal") as HTMLDivElement | null;
-const accountIcon = document.querySelector(
+const accountIcon = document.querySelector<HTMLAnchorElement>(
   '.header__action-link[href="login.html"]',
-) as HTMLAnchorElement | null;
+);
 const closeBtns = document.querySelectorAll("[data-close]");
 const modalForm = document.getElementById(
   "login-form",
@@ -14,11 +14,9 @@ const emailInput = document.getElementById(
 const passwordInput = document.getElementById(
   "login-password",
 ) as HTMLInputElement | null;
-const toggleBtn = document.querySelector(
-  ".toggle-password",
-) as HTMLButtonElement | null;
-const eyeIcon = document.querySelector(".icon-eye") as SVGElement | null;
-const eyeOffIcon = document.querySelector(".icon-eye-off") as SVGElement | null;
+const toggleBtn = document.querySelector<HTMLButtonElement>(".toggle-password");
+const eyeIcon = document.querySelector<SVGElement>(".icon-eye");
+const eyeOffIcon = document.querySelector<SVGElement>(".icon-eye-off");
 const modalStatusDiv = document.getElementById(
   "login-status",
 ) as HTMLDivElement | null;

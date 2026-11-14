@@ -166,17 +166,18 @@ function initCustomDropdowns() {
         const filterType = select.getAttribute("data-filter");
         optionsList.forEach((option) => {
             option.addEventListener("click", (e) => {
+                var _a, _b, _c;
                 const target = e.target;
-                const text = target.textContent || "Choose option";
+                const text = (_a = target.textContent) !== null && _a !== void 0 ? _a : "Choose option";
                 if (trigger)
                     trigger.textContent = text;
                 if (filterType === "sort") {
-                    const sortValue = target.getAttribute("data-sort") || "default";
+                    const sortValue = (_b = target.getAttribute("data-sort")) !== null && _b !== void 0 ? _b : "default";
                     activeFilters.sortBy = sortValue;
                     applyFiltersAndRender();
                     return;
                 }
-                const value = target.getAttribute("data-value") || "";
+                const value = (_c = target.getAttribute("data-value")) !== null && _c !== void 0 ? _c : "";
                 if (filterType === "color")
                     activeFilters.color = value;
                 if (filterType === "size")

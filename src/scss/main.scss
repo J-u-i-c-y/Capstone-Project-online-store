@@ -64,6 +64,7 @@ h3 {
     background-color: $primary-color;
     color: #fff;
     border: none;
+    width: max-content;
 
     &:hover {
       opacity: 0.85;

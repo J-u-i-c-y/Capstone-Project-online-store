@@ -18,7 +18,6 @@ export const createProductCard = (product: Product): string => {
     : "";
 
   const productData = encodeURIComponent(JSON.stringify(product));
-  console.log(product.id);
 
   return `
     <a href="/src/html/product.html?id=${product.id}" class="product-card">

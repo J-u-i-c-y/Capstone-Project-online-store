@@ -3,7 +3,6 @@ export const createProductCard = (product) => {
         ? `<div class="product-card__badge">SALE</div>`
         : "";
     const productData = encodeURIComponent(JSON.stringify(product));
-    console.log(product.id);
     return `
     <a href="/src/html/product.html?id=${product.id}" class="product-card">
       <div class="product-card__image-wrapper">

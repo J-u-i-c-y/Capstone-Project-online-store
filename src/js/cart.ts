@@ -11,7 +11,7 @@ export interface CartItem {
 }
 
 export const getCart = (): CartItem[] => {
-  return JSON.parse(localStorage.getItem("cart") || "[]");
+  return JSON.parse(localStorage.getItem("cart") ?? "[]");
 };
 
 export const saveCart = (cart: CartItem[]): void => {
@@ -38,7 +38,7 @@ export const addToCart = (
   color: string = product.color,
 ): void => {
   let defaultSize = product.size;
-  if (product.size && product.size.includes(",")) {
+  if (product.size?.includes(",")) {
     defaultSize = product.size.split(",")[0].trim();
   }
   const finalSize = size || defaultSize;
@@ -71,9 +71,7 @@ export const addToCart = (
 export const initGlobalCartListeners = (): void => {
   document.body.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
-    const btn = target.closest(
-      ".product-card__btn",
-    ) as HTMLButtonElement | null;
+    const btn = target.closest<HTMLButtonElement>(".product-card__btn");
 
     if (btn) {
       e.preventDefault();
@@ -94,77 +92,90 @@ const SHIPPING_COST = 30;
 const DISCOUNT_THRESHOLD = 3000;
 const DISCOUNT_PERCENT = 0.1;
 
+const setDisplay = (id: string, display: string): void => {
+  const el = document.getElementById(id);
+  if (el) el.style.display = display;
+};
+
+const setText = (id: string, text: string): void => {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+};
+
+const createCartRow = (item: CartItem, index: number): string => {
+  const rowTotal = item.price * item.quantity;
+  const sizeHtml = item.selectedSize
+    ? `<span class="cart-row__meta">Size: ${item.selectedSize}</span>`
+    : "";
+  const colorHtml = item.selectedColor
+    ? `<span class="cart-row__meta">Color: ${item.selectedColor}</span>`
+    : "";
+
+  return `
+    <div class="cart-row" data-index="${index}">
+      <div class="cart-row__image"><img src="${item.imageUrl}" alt="${item.name}"></div>
+      <div class="cart-row__name">
+        ${item.name}
+        ${sizeHtml}
+        ${colorHtml}
+      </div>
+      <div class="cart-row__price">$${item.price}</div>
+      <div class="cart-row__quantity">
+        <button class="qty-btn minus" data-index="${index}">−</button>
+        <span class="qty-value">${item.quantity}</span>
+        <button class="qty-btn plus" data-index="${index}">+</button>
+      </div>
+      <div class="cart-row__total">$${rowTotal}</div>
+      <div class="cart-row__delete">
+        <button class="delete-btn" data-index="${index}">🗑️</button>
+      </div>
+    </div>
+  `;
+};
+
+const updateCartSummary = (cart: CartItem[]): void => {
+  const subtotal = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
+  let finalTotal = subtotal + SHIPPING_COST;
+
+  if (subtotal > DISCOUNT_THRESHOLD) {
+    const discount = subtotal * DISCOUNT_PERCENT;
+    finalTotal = subtotal + SHIPPING_COST - discount;
+
+    setDisplay("discount-row", "flex");
+    setText("summary-discount", `-$${discount.toFixed(2)}`);
+  } else {
+    setDisplay("discount-row", "none");
+  }
+
+  setText("summary-subtotal", `$${subtotal}`);
+  setText("summary-total", `$${finalTotal.toFixed(2)}`);
+};
+
 export const renderCartPage = (): void => {
   const cartItemsContainer = document.getElementById("cart-items");
   if (!cartItemsContainer) return;
 
   const cart = getCart();
 
-  const emptyMessage = document.getElementById("cart-empty-message");
-  const cartContent = document.getElementById("cart-content");
-  const cartSummary = document.getElementById("cart-summary");
-  const summarySubtotal = document.getElementById("summary-subtotal");
-  const summaryDiscount = document.getElementById("summary-discount");
-  const summaryTotal = document.getElementById("summary-total");
-  const discountRow = document.getElementById("discount-row");
-
   if (cart.length === 0) {
-    if (emptyMessage) emptyMessage.style.display = "block";
-    if (cartContent) cartContent.style.display = "none";
-    if (cartSummary) cartSummary.style.display = "none";
+    setDisplay("cart-empty-message", "block");
+    setDisplay("cart-content", "none");
+    setDisplay("cart-summary", "none");
     return;
   }
 
-  if (emptyMessage) emptyMessage.style.display = "none";
-  if (cartContent) cartContent.style.display = "block";
-  if (cartSummary) cartSummary.style.display = "inline-block";
+  setDisplay("cart-empty-message", "none");
+  setDisplay("cart-content", "block");
+  setDisplay("cart-summary", "inline-block");
 
   cartItemsContainer.innerHTML = cart
-    .map((item, index) => {
-      const rowTotal = item.price * item.quantity;
-
-      return `
-      <div class="cart-row" data-index="${index}">
-        <div class="cart-row__image"><img src="${item.imageUrl}" alt="${item.name}"></div>
-        <div class="cart-row__name">
-          ${item.name}
-          ${item.selectedSize ? `<span class="cart-row__meta">Size: ${item.selectedSize}</span>` : ""}
-          ${item.selectedColor ? `<span class="cart-row__meta">Color: ${item.selectedColor}</span>` : ""}
-        </div>
-        <div class="cart-row__price">$${item.price}</div>
-        <div class="cart-row__quantity">
-          <button class="qty-btn minus" data-index="${index}">−</button>
-          <span class="qty-value">${item.quantity}</span>
-          <button class="qty-btn plus" data-index="${index}">+</button>
-        </div>
-        <div class="cart-row__total">$${rowTotal}</div>
-        <div class="cart-row__delete">
-          <button class="delete-btn" data-index="${index}">🗑️</button>
-        </div>
-      </div>
-    `;
-    })
+    .map((item, index) => createCartRow(item, index))
     .join("");
 
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  let discount = 0;
-  let finalTotal = subtotal + SHIPPING_COST;
-
-  if (subtotal > DISCOUNT_THRESHOLD) {
-    discount = subtotal * DISCOUNT_PERCENT;
-    finalTotal = subtotal + SHIPPING_COST - discount;
-    if (discountRow) discountRow.style.display = "flex";
-    if (summaryDiscount)
-      summaryDiscount.textContent = `-$${discount.toFixed(2)}`;
-  } else {
-    if (discountRow) discountRow.style.display = "none";
-  }
-
-  if (summarySubtotal) summarySubtotal.textContent = `$${subtotal}`;
-  if (summaryTotal) summaryTotal.textContent = `$${finalTotal.toFixed(2)}`;
+  updateCartSummary(cart);
 };
 
 export const initCartPageListeners = (): void => {
@@ -176,7 +187,7 @@ export const initCartPageListeners = (): void => {
 
     if (target.closest(".plus")) {
       const index = parseInt(
-        target.closest(".plus")!.getAttribute("data-index") || "0",
+        target.closest(".plus")!.getAttribute("data-index") ?? "0",
       );
       const cart = getCart();
       cart[index].quantity += 1;
@@ -186,7 +197,7 @@ export const initCartPageListeners = (): void => {
 
     if (target.closest(".minus")) {
       const index = parseInt(
-        target.closest(".minus")!.getAttribute("data-index") || "0",
+        target.closest(".minus")!.getAttribute("data-index") ?? "0",
       );
       const cart = getCart();
       cart[index].quantity -= 1;
@@ -199,12 +210,11 @@ export const initCartPageListeners = (): void => {
 
     if (target.closest(".delete-btn")) {
       const index = parseInt(
-        target.closest(".delete-btn")!.getAttribute("data-index") || "0",
+        target.closest(".delete-btn")!.getAttribute("data-index") ?? "0",
       );
       const cart = getCart();
       cart.splice(index, 1);
       saveCart(cart);
-      return;
     }
   });
 

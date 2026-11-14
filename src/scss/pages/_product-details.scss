@@ -321,9 +321,10 @@
 .form-group {
   margin-bottom: 20px;
 
-  label {
+  label,
+  legend {
     display: block;
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 700;
     margin-bottom: 8px;
     text-transform: uppercase;
@@ -332,19 +333,6 @@
     .required {
       color: $primary-color;
     }
-  }
-}
-
-.form-group {
-  margin-bottom: 20px;
-
-  label {
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    color: #333;
   }
 }
 
