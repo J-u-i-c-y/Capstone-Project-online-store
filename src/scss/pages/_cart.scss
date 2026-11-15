@@ -2,7 +2,7 @@
 @use "../abstracts/mixins" as *;
 
 .cart-hero {
-  background: url("../../src/assets/images/cart-bg.jpg") center/cover no-repeat;
+  background: url("/src/assets/images/cart-bg.jpg") center/cover no-repeat;
   height: 229px;
   display: flex;
   align-items: center;
