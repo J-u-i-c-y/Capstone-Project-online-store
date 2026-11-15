@@ -14,7 +14,9 @@ export interface Product {
 
 export const createProductCard = (product: Product): string => {
   const cleanPath = product.imageUrl.replace("/src/", "").replace(/^\//, "");
-  let imageSrc = `./${cleanPath}`;
+  const isInHtmlFolder = window.location.pathname.includes("/html/");
+  const prefix = isInHtmlFolder ? "../" : "./";
+  let imageSrc = `${prefix}${cleanPath}`;
 
   const saleBadge = product.salesStatus
     ? `<div class="product-card__badge">SALE</div>`
