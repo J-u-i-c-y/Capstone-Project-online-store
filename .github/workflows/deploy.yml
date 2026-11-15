@@ -30,7 +30,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./src" # Укажите вашу папку, где лежит итоговый index.html
+          path: "./dist" # Укажите вашу папку, где лежит итоговый index.html
 
   deploy:
     needs: build
