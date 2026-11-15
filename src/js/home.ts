@@ -20,7 +20,7 @@ interface ProductsResponse {
 
 const loadProducts = async (): Promise<Product[]> => {
   try {
-    const response = await fetch("../src/assets/data.json");
+    const response = await fetch("./src/assets/data.json");
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
