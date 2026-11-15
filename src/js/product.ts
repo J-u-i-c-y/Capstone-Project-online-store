@@ -10,7 +10,7 @@ let allProducts: Product[] = [];
 
 async function initProductPage(): Promise<void> {
   try {
-    const res = await fetch("../assets/data.json");
+    const res = await fetch("./assets/data.json");
     const json = await res.json();
     allProducts = json.data;
 
