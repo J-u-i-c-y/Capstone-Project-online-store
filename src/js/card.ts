@@ -13,28 +13,14 @@ export interface Product {
 }
 
 export const createProductCard = (product: Product): string => {
+  const cleanPath = product.imageUrl.replace("/src/", "").replace(/^\//, "");
+  let imageSrc = `./${cleanPath}`;
+
   const saleBadge = product.salesStatus
     ? `<div class="product-card__badge">SALE</div>`
     : "";
 
   const productData = encodeURIComponent(JSON.stringify(product));
-
-  let imageSrc = product.imageUrl;
-
-  if (imageSrc.startsWith("/")) {
-    imageSrc = imageSrc.slice(1);
-  }
-
-  const isInHtmlFolder = window.location.pathname.includes("/html/");
-  if (isInHtmlFolder) {
-    imageSrc = `../${imageSrc}`;
-  } else {
-    imageSrc = `./${imageSrc}`;
-  }
-
-  if (product.imageUrl.includes("path/to/")) {
-    imageSrc = "https://picsum.photos/400/500";
-  }
 
   return `
     <a href="./product.html?id=${product.id}" class="product-card">

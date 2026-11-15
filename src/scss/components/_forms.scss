@@ -4,7 +4,7 @@
 .contact {
   &__hero {
     position: relative;
-    background-image: url("/assets/images/contact-hero.jpg");
+    background-image: url("../assets/images/contact-hero.jpg");
     background-size: cover;
     background-position: center;
     padding: 120px 20px;
@@ -40,7 +40,7 @@
 
   &__image {
     height: 100%;
-    background-image: url("/assets/images/feedback.jpg");
+    background-image: url("../assets/images/feedback.jpg");
     background-size: cover;
   }
 }
