@@ -17,6 +17,7 @@ export const createProductCard = (product: Product): string => {
   const isInHtmlFolder = window.location.pathname.includes("/html/");
   const prefix = isInHtmlFolder ? "../" : "./";
   let imageSrc = `${prefix}${cleanPath}`;
+  const linkPrefix = isInHtmlFolder ? "./" : "./html/";
 
   const saleBadge = product.salesStatus
     ? `<div class="product-card__badge">SALE</div>`
@@ -25,7 +26,7 @@ export const createProductCard = (product: Product): string => {
   const productData = encodeURIComponent(JSON.stringify(product));
 
   return `
-    <a href="./product.html?id=${product.id}" class="product-card">
+    <a href="${linkPrefix}product.html?id=${product.id}" class="product-card">
       <div class="product-card__image-wrapper">
         ${saleBadge}
         <img src="${imageSrc}" alt="${product.name}" class="product-card__image" loading="lazy">
