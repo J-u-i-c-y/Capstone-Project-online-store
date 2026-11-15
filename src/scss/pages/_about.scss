@@ -4,7 +4,7 @@
 .about {
   &__hero {
     position: relative;
-    background-image: url("/assets/images/about-hero.png");
+    background-image: url("../assets/images/about-hero.png");
     background-size: cover;
     background-position: center;
     padding: 120px 20px;
@@ -191,7 +191,7 @@
 
 .cta {
   &__wrapper {
-    background-image: url("/assets/images/discount.png");
+    background-image: url("../assets/images/discount.png");
     position: relative;
     background-size: cover;
     background-position: center;

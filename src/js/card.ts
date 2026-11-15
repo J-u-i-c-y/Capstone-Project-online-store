@@ -19,11 +19,28 @@ export const createProductCard = (product: Product): string => {
 
   const productData = encodeURIComponent(JSON.stringify(product));
 
+  let imageSrc = product.imageUrl;
+
+  if (imageSrc.startsWith("/")) {
+    imageSrc = imageSrc.slice(1);
+  }
+
+  const isInHtmlFolder = window.location.pathname.includes("/html/");
+  if (isInHtmlFolder) {
+    imageSrc = `../${imageSrc}`;
+  } else {
+    imageSrc = `./${imageSrc}`;
+  }
+
+  if (product.imageUrl.includes("path/to/")) {
+    imageSrc = "https://picsum.photos/400/500";
+  }
+
   return `
     <a href="./product.html?id=${product.id}" class="product-card">
       <div class="product-card__image-wrapper">
         ${saleBadge}
-        <img src="${product.imageUrl}" alt="${product.name}" class="product-card__image" loading="lazy">
+        <img src="${imageSrc}" alt="${product.name}" class="product-card__image" loading="lazy">
       </div>
       <div class="product-card__content">
         <h3 class="product-card__title">${product.name}</h3>
