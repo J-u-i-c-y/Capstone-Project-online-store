@@ -1,4 +1,4 @@
-import { Product } from "./card.js";
+import { Product, getImagePath } from "./card.js";
 
 export interface CartItem {
   id: string;
@@ -113,7 +113,7 @@ const createCartRow = (item: CartItem, index: number): string => {
 
   return `
     <div class="cart-row" data-index="${index}">
-      <div class="cart-row__image"><img src="${item.imageUrl}" alt="${item.name}"></div>
+      <div class="cart-row__image"><img src="${getImagePath(item.imageUrl)}" alt="${item.name}"></div>
       <div class="cart-row__name">
         ${item.name}
         ${sizeHtml}
