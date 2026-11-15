@@ -1,4 +1,4 @@
-import { createProductCard, Product } from "./card.js";
+import { createProductCard, Product, getImagePath } from "./card.js";
 
 import { initProductTabs } from "./product-tabs.js";
 import { addToCart } from "./cart.js";
@@ -79,7 +79,7 @@ function renderProductDetails(product: Product): void {
   if (priceEl) priceEl.textContent = `$${product.price}`;
 
   if (imageEl) {
-    imageEl.src = product.imageUrl;
+    imageEl.src = getImagePath(product.imageUrl);
   }
 
   if (starsEl) {

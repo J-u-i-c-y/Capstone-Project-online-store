@@ -1,5 +1,7 @@
 # Project Setup and Running Guide
 
+### 🚀 [Open Web Site (Live Demo)](https://j-u-i-c-y.github.io/Capstone-Project-online-store/)
+
 ## Prerequisites
 
 - **Node.js** (v18 or higher) and **npm** — required to install dependencies and run the project.

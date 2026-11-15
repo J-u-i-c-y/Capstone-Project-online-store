@@ -1,4 +1,4 @@
-import { createProductCard, Product } from "./card.js";
+import { createProductCard, Product, getImagePath } from "./card.js";
 
 const ITEMS_PER_PAGE = 12;
 let allProducts: Product[] = [];
@@ -184,7 +184,7 @@ function renderTopSets(): void {
     .map(
       (product) => `
     <div class="top-set-item">
-      <img src="${product.imageUrl}" alt="${product.name}">
+      <img src="${getImagePath(product.imageUrl)}" alt="${product.name}">
       <div class="top-set-item__info">
         <p class="top-set-item__name">${product.name}</p>
         <div class="top-set-item__rating">${"★".repeat(Math.round(product.rating))}</div>

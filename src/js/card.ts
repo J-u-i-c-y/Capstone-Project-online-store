@@ -46,3 +46,11 @@ export const createProductCard = (product: Product): string => {
     </a>
   `;
 };
+
+export const getImagePath = (imageUrl: string): string => {
+  const cleanPath = imageUrl.replace("/src/", "").replace(/^\//, "");
+  const isInHtmlFolder = window.location.pathname.includes("/html/");
+  const prefix = isInHtmlFolder ? "../" : "./";
+
+  return `${prefix}${cleanPath}`;
+};
