@@ -15,7 +15,7 @@
     "dev": "concurrently \"sass --watch src/scss:dist/css\" \"tsc --watch\" \"live-server . --port=7000 --host=localhost --open=/src/index.html\"",
     "sass": "sass src/scss:dist/css",
     "compile": "tsc",
-    "build": "npm run sass && npm run compile && cp src/index.html dist/ && cp -r src/assets dist/assets",
+    "build": "npm run sass && npm run compile && cp src/index.html dist/ && cp -r src/assets dist/assets && cp -r src/html dist/html",
     "lint": "eslint \"src/**/*.ts\" && stylelint \"src/**/*.scss\"",
     "lint:fix": "eslint \"src/**/*.ts\" --fix && stylelint \"src/**/*.scss\" --fix"
   },
